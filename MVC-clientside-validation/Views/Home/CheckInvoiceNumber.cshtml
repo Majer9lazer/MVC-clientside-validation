@@ -1,0 +1,45 @@
+﻿@model MVC_clientside_validation.Models.InvoiceNumber
+
+@{
+    ViewBag.Title = "CheckInvoiceNumber";
+}
+
+<h2>CheckInvoiceNumber</h2>
+
+@if ((ViewBag.Message as string) != null)
+{
+<div class="alert alert-warning alert-dismissible" role="alert">
+    <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+    <strong>Warning!</strong>
+    <p>@ViewBag.Message</p>
+</div>
+}
+
+
+@using (Html.BeginForm())
+{
+    @Html.AntiForgeryToken()
+
+    <div class="form-horizontal">
+        <h4>InvoiceNumber</h4>
+        <hr />
+        <div class="form-group">
+            @Html.LabelFor(model => model.Invoice, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.Invoice, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.Invoice, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            <div class="col-md-offset-2 col-md-10">
+                <input type="submit" value="Проверить" class="btn btn-success" />
+            </div>
+        </div>
+    </div>
+}
+
+
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+}

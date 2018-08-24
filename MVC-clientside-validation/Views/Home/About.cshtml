@@ -1,0 +1,23 @@
+﻿@using System.Web.UI.WebControls
+@model MVC_clientside_validation.Models.InvoiceNumber
+@{
+    ViewBag.Title = "About";
+}
+<h2>@ViewBag.Title.</h2>
+<h3>@ViewBag.Message</h3>
+@using (Html.BeginForm("CheckValidation", "Home", FormMethod.Post))
+{
+    <div class="row">
+        <div class="col-md-4"></div>
+        @Html.TextBoxFor(model => model.Invoice)
+        <button type="submit" class="btn btn-success">Проверить корректность данных</button>
+    </div>
+    <div class="col-md-6">
+        @Html.ValidationSummary()
+    </div>
+
+}
+@section scripts
+{
+    <script src="~/Scripts/jquery.validate.unobtrusive.min.js"></script>
+}
